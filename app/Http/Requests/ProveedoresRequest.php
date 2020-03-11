@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\trabajadores;
+use App\proveedores;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class TrabajadoresRequest extends FormRequest
+class ProveedoresRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,17 +29,17 @@ class TrabajadoresRequest extends FormRequest
             'nombre' => [
                 'required', 'min:8'
             ],
-            'apellidos' => [
-                'required', 'min:8'
-            ],
             'telefono' => [
                 'required', 'min:8'
             ],
-            'domicilio' => [
-                'required', 'min:20'
-            ],
-            'puesto' => [
+            'representante' => [
                 'required', 'min:8'
+            ],
+            'direccion' => [
+                'min:15'
+            ],
+            'correo' => [
+                'min:14'
             ]
         ];
     }
