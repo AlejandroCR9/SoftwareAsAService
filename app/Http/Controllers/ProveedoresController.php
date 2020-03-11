@@ -47,11 +47,12 @@ class ProveedoresController extends Controller
     /**
      * Show the form for editing the specified user
      *
-     * @param  \App\trabajadores  $trabajador
+     * @param  id del trabajador $id
      * @return \Illuminate\View\View
      */
-    public function edit(proveedores $proveedores)
+    public function edit($id)
     {
+        $proveedores=proveedores::find($id);
         return view('proveedores.edit', compact('proveedores'));
     }
 
@@ -62,23 +63,31 @@ class ProveedoresController extends Controller
      * @param  \App\trabajadores  $trabajador
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(ProveedoresRequest $request, proveedores  $proveedores)
-    {
-        $model->update($request->all());
-
+    public function update(ProveedoresRequest $request, proveedores  $proveedores, $id)
+    {   
+        $prove =proveedores::findOrFail($id);
+        $prove->update($request->all());
         return redirect()->route('proveedores.index')->withStatus(__('Proveedor modificado exitosamente.'));
     }
 
     /**
      * Remove the specified user from storage
      *
-     * @param  \App\trabajadores  $trabajador
+     * @param  id del trabajador $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(proveedores  $proveedores)
+    public function destroy( $id)
     {
-        $proveedores->delete();
-
-        return redirect()->route('proveedores.index')->withStatus(__('Proveedor elimindado exitosamente.'));
+        //$trabajador->delete();
+        try{
+            proveedores::find($id)->delete();
+            return redirect()->route('proveedores.index')->withStatus(__('Proveedor elimindado exitosamente.'));
+        }catch(Exception $ex){
+            //return response()->json([
+              //  'error' => 'Hubo un error al eliminar el registro con id: '.$id. ' : '.$ex->getMessage()
+            //], 400);
+        }
+        
+        
     }
 }

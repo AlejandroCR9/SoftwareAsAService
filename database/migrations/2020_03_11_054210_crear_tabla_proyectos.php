@@ -19,8 +19,8 @@ class CrearTablaProyectos extends Migration
             $table->string('tipo_proyecto', 20);
             $table->string('ubicacion', 100);
             $table->string('estado', 15);
-            $table->date('fecha_inicio');
-            $table->date('fecha_fin');
+            $table->date('fecha_inicio')->nullable();
+            $table->date('fecha_fin')->nullable();
             $table->integer('fk_id_lider');
             $table->integer('fk_id_cliente');
             $table->foreign('fk_id_lider')->references('id')->on('trabajadores')->onDelete('cascade');

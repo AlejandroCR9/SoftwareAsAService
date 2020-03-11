@@ -47,12 +47,13 @@ class ClientesController extends Controller
     /**
      * Show the form for editing the specified user
      *
-     * @param  \App\trabajadores  $trabajador
+     * @param  id del trabajador $id
      * @return \Illuminate\View\View
      */
-    public function edit(clientes $clientes)
+    public function edit($id)
     {
-        return view('clientes.edit', compact('clientes'));
+        $cliente=clientes::find($id);
+        return view('clientes.edit', compact('cliente'));
     }
 
     /**
@@ -62,24 +63,32 @@ class ClientesController extends Controller
      * @param  \App\trabajadores  $trabajador
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(ClientesRequest $request, clientes  $clientes)
-    {
-        $model->update($request->all());
-
+    public function update(ClientesRequest $request, clientes  $cliente, $id)
+    {   
+        $clien =clientes::findOrFail($id);
+        $clien->update($request->all());
         return redirect()->route('clientes.index')->withStatus(__('Cliente modificado exitosamente.'));
     }
 
     /**
      * Remove the specified user from storage
      *
-     * @param  \App\trabajadores  $trabajador
+     * @param  id del trabajador $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(clientes  $clientes)
+    public function destroy( $id)
     {
-        $clientes->delete();
-
-        return redirect()->route('clientes.index')->withStatus(__('Cliente elimindado exitosamente.'));
+        //$trabajador->delete();
+        try{
+            clientes::find($id)->delete();
+            return redirect()->route('clientes.index')->withStatus(__('Cliente elimindado exitosamente.'));
+        }catch(Exception $ex){
+            //return response()->json([
+              //  'error' => 'Hubo un error al eliminar el registro con id: '.$id. ' : '.$ex->getMessage()
+            //], 400);
+        }
+        
+        
     }
 }
 
