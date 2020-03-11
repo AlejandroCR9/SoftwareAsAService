@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => __('User Management')])
+@extends('layouts.app', ['title' => __('Trabajador')])
 
 @section('content')
     @include('users.partials.header', ['title' => __('Editar Tabajador')])   
@@ -18,15 +18,15 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('trabajadores.update', $trabajador) }}" autocomplete="off">
+                        <form method="post" action="{{ route('trabajadores.update', $trabajador, $trabajador->id) }}" autocomplete="off">
                             @csrf
                             @method('put')
 
                             <h6 class="heading-small text-muted mb-4">{{ __('Información') }}</h6>
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('nombre') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-name">{{ __('Nombre') }}</label>
-                                    <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('nombre') ? ' is-invalid' : '' }}" placeholder="{{ __('Nombre') }}" value="{{ old('nombre', $user->name) }}" required autofocus>
+                                    <label class="form-control-label" for="input-nombre">{{ __('Nombre') }}</label>
+                                    <input type="text" name="nombre" id="input-nombre" class="form-control form-control-alternative{{ $errors->has('nombre') ? ' is-invalid' : '' }}" placeholder="{{ __('Nombre') }}" value="{{ old('nombre', $trabajador->nombre) }}" required autofocus>
 
                                     @if ($errors->has('nombre'))
                                         <span class="invalid-feedback" role="alert">
@@ -34,33 +34,53 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-email">{{ __('Email') }}</label>
-                                    <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email', $user->email) }}" required>
+                                
+                                <div class="form-group{{ $errors->has('apellidos') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-apellidos">{{ __('Apellidos') }}</label>
+                                    <input type="text" name="apellidos" id="input-apellidos" class="form-control form-control-alternative{{ $errors->has('apellidos') ? ' is-invalid' : '' }}" placeholder="{{ __('Apellidos') }}" value="{{ old('apellidos',$trabajador->apellidos) }}" required autofocus>
 
-                                    @if ($errors->has('email'))
+                                    @if ($errors->has('apellidos'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('email') }}</strong>
+                                            <strong>{{ $errors->first('apellidos') }}</strong>
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-password">{{ __('Password') }}</label>
-                                    <input type="password" name="password" id="input-password" class="form-control form-control-alternative{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('Password') }}" value="">
-                                    
-                                    @if ($errors->has('password'))
+
+                                <div class="form-group{{ $errors->has('telefono') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-telefono">{{ __('Telefono') }}</label>
+                                    <input type="text" name="telefono" id="input-telefono" class="form-control form-control-alternative{{ $errors->has('telefono') ? ' is-invalid' : '' }}" placeholder="{{ __('Telefono') }}" value="{{ old('telefono',$trabajador->telefono) }}" required autofocus>
+
+                                    @if ($errors->has('telefono'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('password') }}</strong>
+                                            <strong>{{ $errors->first('telefono') }}</strong>
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-password-confirmation">{{ __('Confirm Password') }}</label>
-                                    <input type="password" name="password_confirmation" id="input-password-confirmation" class="form-control form-control-alternative" placeholder="{{ __('Confirm Password') }}" value="">
+
+                                <div class="form-group{{ $errors->has('domicilio') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-domicilio">{{ __('Domicilo') }}</label>
+                                    <input type="text" name="domicilio" id="input-domicilio" class="form-control form-control-alternative{{ $errors->has('domicilio') ? ' is-invalid' : '' }}" placeholder="{{ __('Domicilio') }}" value="{{ old('domicilio',$trabajador->domicilio) }}" required autofocus>
+
+                                    @if ($errors->has('domicilio'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('domicilio') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                               
+                                <div class="form-group{{ $errors->has('puesto') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-puesto">{{ __('Puesto') }}</label>
+                                    <input type="text" name="puesto" id="input-puesto" class="form-control form-control-alternative{{ $errors->has('puesto') ? ' is-invalid' : '' }}" placeholder="{{ __('Puesto') }}" value="{{ old('puesto',$trabajador->puesto) }}" required autofocus>
+
+                                    @if ($errors->has('puesto'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('puesto') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
 
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
+                                    <button type="submit" class="btn btn-success mt-4">{{ __('Guardar') }}</button>
                                 </div>
                             </div>
                         </form>

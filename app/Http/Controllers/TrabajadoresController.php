@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\trabajadores;
+use Illuminate\Http\Request;
 use App\Http\Requests\TrabajadoresRequest;
 use Illuminate\Support\Facades\Hash;
 
@@ -47,11 +47,12 @@ class TrabajadoresController extends Controller
     /**
      * Show the form for editing the specified user
      *
-     * @param  \App\trabajadores  $trabajador
+     * @param  id del trabajador $id
      * @return \Illuminate\View\View
      */
-    public function edit(trabajadores $trabajador)
+    public function edit($id)
     {
+        $trabajador=trabajadores::find($id);
         return view('trabajadores.edit', compact('trabajador'));
     }
 
@@ -62,24 +63,32 @@ class TrabajadoresController extends Controller
      * @param  \App\trabajadores  $trabajador
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(TrabajadoresRequest $request, trabajadores  $trabajador)
-    {
-        $model->update($request->all());
-
+    public function update(TrabajadoresRequest $request, trabajadores  $trabajador, $id)
+    {   
+        $traba =trabajadores::findOrFail($id);
+        $traba->update($request->all());
         return redirect()->route('trabajadores.index')->withStatus(__('Trabajador modificado exitosamente.'));
     }
 
     /**
      * Remove the specified user from storage
      *
-     * @param  \App\trabajadores  $trabajador
+     * @param  id del trabajador $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(trabajadores  $trabajador)
+    public function destroy( $id)
     {
-        $trabajador->delete();
-
-        return redirect()->route('trabajadores.index')->withStatus(__('Trabajador elimindado exitosamente.'));
+        //$trabajador->delete();
+        try{
+            trabajadores::find($id)->delete();
+            return redirect()->route('trabajadores.index')->withStatus(__('Trabajador elimindado exitosamente.'));
+        }catch(Exception $ex){
+            //return response()->json([
+              //  'error' => 'Hubo un error al eliminar el registro con id: '.$id. ' : '.$ex->getMessage()
+            //], 400);
+        }
+        
+        
     }
 }
 

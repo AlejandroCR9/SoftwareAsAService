@@ -58,11 +58,11 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                     
-                                                    <form action="{{ route('trabajadores.destroy', $trabajador) }}" method="post">
+                                                    <form action="{{ route('trabajadores.destroy', $trabajador->id ) }}" method="post">
                                                         @csrf
                                                         @method('delete')
                                                             
-                                                        <a class="dropdown-item" href="{{ route('trabajadores.edit', $trabajador) }}">{{ __('Editar') }}</a>
+                                                        <a class="dropdown-item" href="{{ route('trabajadores.edit', $trabajador->id) }}">{{ __('Editar') }}</a>
                                                         <button type="button" class="dropdown-item" onclick="confirm('{{ __("¿Estás seguro que deseas borrarlo?") }}') ? this.parentElement.submit() : ''">
                                                         {{ __('Borrar') }}
                                                         </button>

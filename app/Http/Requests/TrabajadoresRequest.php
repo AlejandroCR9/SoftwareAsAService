@@ -27,19 +27,19 @@ class TrabajadoresRequest extends FormRequest
     {
         return [
             'nombre' => [
-                'required', 'min:8'
+                'required', 'min:3'
             ],
             'apellidos' => [
-                'required', 'min:8'
+                'required', 'min:5'
             ],
             'telefono' => [
-                'required', 'min:8'
+                'required', 'min:10'
             ],
             'domicilio' => [
-                'required', 'min:20'
+                'required', 'min:15'
             ],
             'puesto' => [
-                'required', 'min:8'
+                'required', 'min:5'
             ]
         ];
     }
