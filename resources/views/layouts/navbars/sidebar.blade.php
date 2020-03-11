@@ -95,8 +95,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('trabajadores.index') }}">
-                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Clientes (No jala)') }}
+                    <a class="nav-link" href="{{ route('clientes.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Clientes') }}
                     </a>
                 </li>
 

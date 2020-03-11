@@ -40,7 +40,7 @@ class TrabajadoresController extends Controller
     public function store(TrabajadoresRequest $request, trabajadores $model)
     {
         $model->create($request->all());
-
+        
         return redirect()->route('trabajadores.index')->withStatus(__('Trabajador creado exitosamente.'));
     }
 

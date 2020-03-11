@@ -63,7 +63,7 @@ class ClientesController extends Controller
      * @param  \App\trabajadores  $trabajador
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(ClientesRequest $request, clientes  $cliente, $id)
+    public function update(ClientesRequest $request, $id)
     {   
         $clien =clientes::findOrFail($id);
         $clien->update($request->all());
