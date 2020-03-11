@@ -17,7 +17,7 @@ class TrabajadoresController extends Controller
      */
     public function index(trabajadores $model)
     {
-        return view('users.index', ['users' => $model->paginate(15)]);
+        return view('trabajadores.index', ['trabajadores' => $model->paginate(15)]);
     }
 
     /**
@@ -27,7 +27,7 @@ class TrabajadoresController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('trabajadores.create');
     }
 
     /**
@@ -41,7 +41,7 @@ class TrabajadoresController extends Controller
     {
         $model->create($request->all());
 
-        return redirect()->route('user.index')->withStatus(__('User successfully created.'));
+        return redirect()->route('trabajadores.index')->withStatus(__('Trabajador creado exitosamente.'));
     }
 
     /**
@@ -52,7 +52,7 @@ class TrabajadoresController extends Controller
      */
     public function edit(trabajadores $trabajador)
     {
-        return view('users.edit', compact('trabajador'));
+        return view('trabajadores.edit', compact('trabajador'));
     }
 
     /**
@@ -66,7 +66,7 @@ class TrabajadoresController extends Controller
     {
         $model->update($request->all());
 
-        return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
+        return redirect()->route('trabajadores.index')->withStatus(__('Trabajador modificado exitosamente.'));
     }
 
     /**
@@ -79,7 +79,7 @@ class TrabajadoresController extends Controller
     {
         $trabajador->delete();
 
-        return redirect()->route('user.index')->withStatus(__('User successfully deleted.'));
+        return redirect()->route('trabajadores.index')->withStatus(__('Trabajador elimindado exitosamente.'));
     }
 }
 

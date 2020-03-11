@@ -84,7 +84,11 @@
                         <i class="ni ni-circle-08 text-pink"></i>{{ __('Usuarios') }}
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('trabajadores.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Trabajadores') }}
+                    </a>
+                </li>
 
                 <!--<li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">

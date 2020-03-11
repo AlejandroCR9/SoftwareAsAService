@@ -20,6 +20,7 @@ class CrearTablaTrabajadores extends Migration
             $table->string('telefono',10);
             $table->string('domicilio',70);
             $table->string('puesto',25);
+            $table->timestamps();
         });
     }
 
