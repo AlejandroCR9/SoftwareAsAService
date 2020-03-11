@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\conceptos;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ConceptosRequest extends FormRequest
@@ -24,7 +26,27 @@ class ConceptosRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'descripcion' => [
+                'required'
+            ],
+            'unidad' => [
+                'required'
+            ],
+            'cantidad' => [
+                'required'
+            ],
+            'pu' => [
+                'required'
+            ],
+            'area' => [
+                'required'
+            ],
+            'fk_id_proyecto' => [
+                'required'
+            ],
+            'estado' => [
+                'required'
+            ]
         ];
     }
 }

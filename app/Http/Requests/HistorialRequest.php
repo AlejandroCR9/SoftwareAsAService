@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\historial;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class HistorialRequest extends FormRequest
@@ -24,7 +26,15 @@ class HistorialRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'fk_id_usuario' => [
+                'required'
+            ],
+            'accion' => [
+                'required'
+            ],
+            'lugar' => [
+                'required'
+            ]
         ];
     }
 }

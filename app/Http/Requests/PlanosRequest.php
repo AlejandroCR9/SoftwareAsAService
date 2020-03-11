@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\planos;
+use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest
 
 class PlanosRequest extends FormRequest
 {
@@ -24,7 +26,12 @@ class PlanosRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'plano' => [
+                'required'
+            ],
+            'fk_id_proyecto' => [
+                'required'
+            ]
         ];
     }
 }

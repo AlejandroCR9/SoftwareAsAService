@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\proyectos;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProyectosRequest extends FormRequest
@@ -24,7 +26,28 @@ class ProyectosRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nombre' => [
+                'required'
+            ],
+            'tipo_proyecto' => [
+                'required'
+            ],
+            'ubicacion' => [
+                'required'
+            ],
+            'estado' => [
+                'required'
+            ],
+            'fecha_inicio' => [
+            ],
+            'fecha_fin' => [
+            ],
+            'fk_id_lider' => [
+                'required'
+            ],
+            'fk_id_cliente' => [
+                'required'
+            ]
         ];
     }
 }
