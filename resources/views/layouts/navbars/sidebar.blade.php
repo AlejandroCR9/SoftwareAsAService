@@ -101,8 +101,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('trabajadores.index') }}">
-                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Proveedores (No jala)') }}
+                    <a class="nav-link" href="{{ route('proveedores.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Proveedores') }}
                     </a>
                 </li>
 

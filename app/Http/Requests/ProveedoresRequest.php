@@ -27,19 +27,19 @@ class ProveedoresRequest extends FormRequest
     {
         return [
             'nombre' => [
-                'required', 'min:8'
+                'required', 'min:3'
             ],
             'telefono' => [
-                'required', 'min:8'
+                'required', 'min:10', 'max:10'
             ],
             'representante' => [
-                'required', 'min:8'
+                'required', 'min:3'
             ],
             'direccion' => [
                 'min:15'
             ],
             'correo' => [
-                'min:14'
+                'min:10'
             ]
         ];
     }

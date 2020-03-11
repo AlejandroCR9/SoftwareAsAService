@@ -39,6 +39,7 @@ class ProveedoresController extends Controller
      */
     public function store(ProveedoresRequest $request, proveedores $model)
     {
+        //print_r($request->all());
         $model->create($request->all());
 
         return redirect()->route('proveedores.index')->withStatus(__('Proveedor creado exitosamente.'));
@@ -52,8 +53,8 @@ class ProveedoresController extends Controller
      */
     public function edit($id)
     {
-        $proveedores=proveedores::find($id);
-        return view('proveedores.edit', compact('proveedores'));
+        $proveedor=proveedores::find($id);
+        return view('proveedores.edit', compact('proveedor'));
     }
 
     /**
