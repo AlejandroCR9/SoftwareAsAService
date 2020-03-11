@@ -80,11 +80,31 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.index') }}">
-                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Usuarios') }}
+                    <a class="nav-link" href="{{ route('trabajadores.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Trabajadores') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('trabajadores.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Proyectos (No jala)') }}
+                    </a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('trabajadores.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Conceptos (No jala)') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('trabajadores.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Clientes (No jala)') }}
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('trabajadores.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Proveedores (No jala)') }}
+                    </a>
+                </li>
 
                 <!--<li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
@@ -106,7 +126,7 @@
                             </li>
                         </ul>
                     </div>
-                </li>-->
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="#">
@@ -127,10 +147,29 @@
                     <a class="nav-link" href="#">
                         <i class="ni ni-circle-08 text-pink"></i><i class="ni ni-ui-04"></i> {{ __('Register') }}
                     </a>
+                </li>-->
+                <!-- Divider -->
+                
+            </ul>
+            <hr class="my-3">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('user.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Usuarios') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('trabajadores.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Reportes (No jala)') }}
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('trabajadores.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Historial de Cambios (No jala)') }}
+                    </a>
                 </li>
             </ul>
-            <!-- Divider -->
-            <hr class="my-3">
         </div>
     </div>
 </nav>

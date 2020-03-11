@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => __('User Management')])
+@extends('layouts.app', ['title' => __('Trabajadores')])
 
 @section('content')
     @include('layouts.headers.cards')
@@ -10,10 +10,10 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">{{ __('Users') }}</h3>
+                                <h3 class="mb-0">{{ __('Trabajadores') }}</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">{{ __('Nuevo Usuario') }}</a>
+                                <a href="{{ route('trabajadores.create') }}" class="btn btn-sm btn-primary">{{ __('Nuevo Trabajador') }}</a>
                             </div>
                         </div>
                     </div>
@@ -33,39 +33,40 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">{{ __('Name') }}</th>
-                                    <th scope="col">{{ __('Email') }}</th>
-                                    <th scope="col">{{ __('Creation Date') }}</th>
+                                    <th scope="col">{{ __('Nombre') }}</th>
+                                    <th scope="col">{{ __('Apellidos') }}</th>
+                                    <th scope="col">{{ __('Telefono') }}</th>
+                                    <th scope="col">{{ __('Domicilio') }}</th>
+                                    <th scope="col">{{ __('Puesto') }}</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($trabajadores as $trabajador)
                                     <tr>
-                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $trabajador->nombre }}</td>
                                         <td>
-                                            <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
+                                           {{ $trabajador->apellidos }}
                                         </td>
-                                        <td>{{ $user->created_at->format('d/m/Y H:i') }}</td>
+                                        <td>{{ $trabajador->telefono}}</td>
+                                        <td>{{ $trabajador->domicilio}}</td>
+                                        <td>{{ $trabajador->puesto}}</td>
                                         <td class="text-right">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    @if ($user->id != auth()->id())
-                                                        <form action="{{ route('user.destroy', $user) }}" method="post">
-                                                            @csrf
-                                                            @method('delete')
+                                                    
+                                                    <form action="{{ route('trabajadores.destroy', $trabajador->id ) }}" method="post">
+                                                        @csrf
+                                                        @method('delete')
                                                             
-                                                            <a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edit') }}</a>
-                                                            <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
-                                                                {{ __('Delete') }}
-                                                            </button>
-                                                        </form>    
-                                                    @else
-                                                        <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Edit') }}</a>
-                                                    @endif
+                                                        <a class="dropdown-item" href="{{ route('trabajadores.edit', $trabajador->id) }}">{{ __('Editar') }}</a>
+                                                        <button type="button" class="dropdown-item" onclick="confirm('{{ __("¿Estás seguro que deseas borrarlo?") }}') ? this.parentElement.submit() : ''">
+                                                        {{ __('Borrar') }}
+                                                        </button>
+                                                    </form>    
                                                 </div>
                                             </div>
                                         </td>
@@ -76,7 +77,7 @@
                     </div>
                     <div class="card-footer py-4">
                         <nav class="d-flex justify-content-end" aria-label="...">
-                            {{ $users->links() }}
+                            
                         </nav>
                     </div>
                 </div>
