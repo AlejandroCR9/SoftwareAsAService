@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\trabajadores;
+use App\historial;
 use Illuminate\Http\Request;
 use App\Http\Requests\TrabajadoresRequest;
 use Illuminate\Support\Facades\Hash;
@@ -40,7 +41,8 @@ class TrabajadoresController extends Controller
     public function store(TrabajadoresRequest $request, trabajadores $model)
     {
         $model->create($request->all());
-        
+         $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Crear', 'lugar' => 'Trabajador nuevo');
+        historial::create($a);
         return redirect()->route('trabajadores.index')->withStatus(__('Trabajador creado exitosamente.'));
     }
 
@@ -53,6 +55,7 @@ class TrabajadoresController extends Controller
     public function edit($id)
     {
         $trabajador=trabajadores::find($id);
+
         return view('trabajadores.edit', compact('trabajador'));
     }
 
@@ -67,6 +70,8 @@ class TrabajadoresController extends Controller
     {   
         $traba =trabajadores::findOrFail($id);
         $traba->update($request->all());
+         $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Editar', 'lugar' => 'Trabajador con id: '.$id);
+        historial::create($a );
         return redirect()->route('trabajadores.index')->withStatus(__('Trabajador modificado exitosamente.'));
     }
 
@@ -81,6 +86,8 @@ class TrabajadoresController extends Controller
         //$trabajador->delete();
         try{
             trabajadores::find($id)->delete();
+            $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Eliminar', 'lugar' => 'Trabajador con id: '.$id);
+            historial::create($a );
             return redirect()->route('trabajadores.index')->withStatus(__('Trabajador elimindado exitosamente.'));
         }catch(Exception $ex){
             //return response()->json([

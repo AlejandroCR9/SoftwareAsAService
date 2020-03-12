@@ -40,7 +40,8 @@ class ConceptosController extends Controller
     public function store(ConceptosRequest $request, conceptos $model)
     {
         $model->create($request->all());
-
+        $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Crear', 'lugar' => 'Concepto nuevo.');
+        historial::create($a);
         return redirect()->route('conceptos.index')->withStatus(__('Concepto creado exitosamente.'));
     }
 
@@ -67,6 +68,8 @@ class ConceptosController extends Controller
     {   
         $concep =conceptos::findOrFail($id);
         $concep->update($request->all());
+        $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Editar', 'lugar' => 'Concepto con id: '.$id);
+        historial::create($a);
         return redirect()->route('conceptos.index')->withStatus(__('Concepto modificado exitosamente.'));
     }
 
@@ -81,6 +84,8 @@ class ConceptosController extends Controller
         //$trabajador->delete();
         try{
             conceptos::find($id)->delete();
+            $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Eliminar', 'lugar' => 'Concepto con id: '.$id);
+        historial::create($a);
             return redirect()->route('conceptos.index')->withStatus(__('Concepto elimindado exitosamente.'));
         }catch(Exception $ex){
             //return response()->json([

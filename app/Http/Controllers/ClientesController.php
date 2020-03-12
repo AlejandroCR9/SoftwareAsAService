@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\clientes;
+use App\historial;
 use App\Http\Requests\ClientesRequest;
 use Illuminate\Support\Facades\Hash;
 
@@ -41,7 +42,8 @@ class ClientesController extends Controller
     {
 
         $model->create($request->all());
-
+        $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Crear', 'lugar' => 'Cliente nuevo.');
+        historial::create($a);
         return redirect()->route('clientes.index')->withStatus(__('Cliente creado exitosamente.'));
     }
 
@@ -68,6 +70,8 @@ class ClientesController extends Controller
     {   
         $clien =clientes::findOrFail($id);
         $clien->update($request->all());
+        $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Editar', 'lugar' => 'Cliente con id.'.$id);
+        historial::create($a);
         return redirect()->route('clientes.index')->withStatus(__('Cliente modificado exitosamente.'));
     }
 
@@ -82,6 +86,8 @@ class ClientesController extends Controller
         //$trabajador->delete();
         try{
             clientes::find($id)->delete();
+            $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Eliminar', 'lugar' => 'Cliente con id.'.$id);
+            historial::create($a);
             return redirect()->route('clientes.index')->withStatus(__('Cliente elimindado exitosamente.'));
         }catch(Exception $ex){
             //return response()->json([

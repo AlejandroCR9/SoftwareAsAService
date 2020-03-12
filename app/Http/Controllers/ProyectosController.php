@@ -33,7 +33,9 @@ class ProyectosController extends Controller
     {
         $clientes = clientes::all();
         $trabajadores = trabajadores::where("puesto","=","Director de proyectos")->get();
-        //print_r($trabajadores);     
+        //print_r($trabajadores);
+        $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Creo', 'lugar' => 'Proyecto con id: '.$id);
+        historial::create($a );     
         return view('proyectos.create', ['info' => $trabajadores], ['clientes' => $clientes] );
     }
 
@@ -64,6 +66,8 @@ class ProyectosController extends Controller
         $trabajador = trabajadores::where("puesto","=","Director de proyectos")->get();
         print_r(compact('proyectos'));
         print_r($proyectos);
+        $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Editar', 'lugar' => 'Proyecto con id: '.$id);
+        historial::create($a );
         return view('proyectos.edit', compact('proyectos'), compact('trabajador','clientes'));
     }
 
@@ -92,6 +96,8 @@ class ProyectosController extends Controller
         //$trabajador->delete();
         try{
             proyectos::find($id)->delete();
+            $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Eliminar', 'lugar' => 'Proyecto con id: '.$id);
+        historial::create($a );
             return redirect()->route('proyectos.index')->withStatus(__('Proyecto elimindado exitosamente.'));
         }catch(Exception $ex){
             //return response()->json([

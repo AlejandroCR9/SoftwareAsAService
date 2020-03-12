@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\proveedores;
+use App\historial;
 use App\Http\Requests\ProveedoresRequest;
 use Illuminate\Support\Facades\Hash;
 
@@ -41,7 +42,8 @@ class ProveedoresController extends Controller
     {
         //print_r($request->all());
         $model->create($request->all());
-
+        $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Crear', 'lugar' => 'Proveedores');
+        historial::create($a );
         return redirect()->route('proveedores.index')->withStatus(__('Proveedor creado exitosamente.'));
     }
 
@@ -68,6 +70,8 @@ class ProveedoresController extends Controller
     {   
         $prove =proveedores::findOrFail($id);
         $prove->update($request->all());
+         $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Editar', 'lugar' => 'Proveedor con id: '.$id);
+        historial::create($a );
         return redirect()->route('proveedores.index')->withStatus(__('Proveedor modificado exitosamente.'));
     }
 
@@ -82,6 +86,8 @@ class ProveedoresController extends Controller
         //$trabajador->delete();
         try{
             proveedores::find($id)->delete();
+            $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Eliminar', 'lugar' => 'Proveedor con id: '.$id);
+            historial::create($a);
             return redirect()->route('proveedores.index')->withStatus(__('Proveedor elimindado exitosamente.'));
         }catch(Exception $ex){
             //return response()->json([
