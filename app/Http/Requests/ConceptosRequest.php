@@ -27,25 +27,25 @@ class ConceptosRequest extends FormRequest
     {
         return [
             'descripcion' => [
-                'required'
+                'required','min:1'
             ],
             'unidad' => [
-                'required'
+                'required','min:1'
             ],
             'cantidad' => [
-                'required'
+                'required','min:1'
             ],
             'pu' => [
-                'required'
+                'required','min:1'
             ],
             'area' => [
-                'required'
+                'required','min:1'
             ],
             'fk_id_proyecto' => [
-                'required'
+                'required','min:1'
             ],
-            'estado' => [
-                'required'
+            'estado_conceptos' => [
+                'required','min:1'
             ]
         ];
     }

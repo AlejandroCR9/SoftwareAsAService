@@ -9,6 +9,6 @@ class conceptos extends Model
     //
     protected $table='conceptos';
     protected $fillable = [
-        'descripcion', 'unidad', 'cantidad','pu','area','fk_id_proyecto','estado',
+        'descripcion', 'unidad', 'cantidad','pu','area','fk_id_proyecto','estado_conceptos',
     ];
 }

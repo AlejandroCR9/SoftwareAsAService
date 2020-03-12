@@ -81,28 +81,28 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('trabajadores.index') }}">
-                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Trabajadores') }}
+                        <i class="fa fa-users" aria-hidden="true"></i>{{ __('Trabajadores') }}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('proyectos.index') }}">
-                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Proyectos (En proceso)') }}
+                        <i class="fa fa-tasks" aria-hidden="true"></i>{{ __('Proyectos') }}
                     </a>
                 </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="{{ route('trabajadores.index') }}">
-                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Conceptos (No jala)') }}
+                    <a class="nav-link" href="{{ route('conceptos.index') }}">
+                        <i class="fa fa-bars" aria-hidden="true"></i>{{ __('Conceptos') }}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('clientes.index') }}">
-                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Clientes') }}
+                        <i class="fa fa-users text-blue" aria-hidden="true"></i>{{ __('Clientes') }}
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('proveedores.index') }}">
-                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Proveedores') }}
+                        <i class="fa fa-users text-purple" aria-hidden="true"></i>{{ __('Proveedores') }}
                     </a>
                 </li>
 
@@ -155,18 +155,13 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('user.index') }}">
-                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Usuarios') }}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('trabajadores.index') }}">
-                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Planos (doesnt work)') }}
+                        <i class="ni ni-circle-08"></i>{{ __('Usuarios') }}
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('historial.index') }}">
-                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Historial de Cambios') }}
+                        <i class="fa fa-history" aria-hidden="true"></i>{{ __('Historial de Cambios') }}
                     </a>
                 </li>
             </ul>

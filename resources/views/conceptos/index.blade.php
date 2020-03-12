@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => __('Proyectos')])
+@extends('layouts.app', ['title' => __('Conceptos')])
 
 @section('content')
     @include('layouts.headers.cards')
@@ -10,10 +10,10 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">{{ __('Proyectos') }}</h3>
+                                <h3 class="mb-0">{{ __('Conceptos') }}</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('proyectos.create') }}" class="btn btn-sm btn-primary">{{ __('Nuevo Proyecto') }}</a>
+                                <a href="{{ route('conceptos.create') }}" class="btn btn-sm btn-primary">{{ __('Nuevo Concepto') }}</a>
                             </div>
                         </div>
                     </div>
@@ -33,30 +33,30 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">{{ __('Nombre') }}</th>
-                                    <th scope="col">{{ __('Tipo Proyecto') }}</th>
-                                    <th scope="col">{{ __('Ubicacion') }}</th>
+                                    <th scope="col">{{ __('Descripcion') }}</th>
+                                    <th scope="col">{{ __('Unidad') }}</th>
+                                    <th scope="col">{{ __('Cantidad') }}</th>
+                                    <th scope="col">{{ __('Precio unitario') }}</th>
+                                    <th scope="col">{{ __('Total') }}</th>
+                                     <th scope="col">{{ __('Area') }}</th>
+                                    <th scope="col">{{ __('Nombre Proyecto') }}</th>
                                     <th scope="col">{{ __('Estado') }}</th>
-                                     <th scope="col">{{ __('Cliente') }}</th>
-                                    <th scope="col">{{ __('Lider Proyecto') }}</th>
-                                    <th scope="col">{{ __('Fecha Inicio') }}</th>
-                                    <th scope="col">{{ __('Fecha Fin') }}</th> 
                                     <th scope="col">{{ __('Creado') }}</th>                                  
                                     <th scope="col"> </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($proyectos as $proyecto)
+                                @foreach ($conceptos as $concepto)
                                     <tr>
-                                        <td>{{ $proyecto->nombre_proyecto }}</td>
-                                        <td>{{ $proyecto->tipo_proyecto}}</td>
-                                        <td>{{ $proyecto->ubicacion}}</td>
-                                        <td>{{ $proyecto->estado}}</td>
-                                        <td>{{ $proyecto->nombre_cliente}}</td>
-                                        <td>{{ $proyecto->nombre}}</td>
-                                        <td>{{ $proyecto->fecha_inicio}}</td>
-                                        <td>{{ $proyecto->fecha_fin}}</td>
-                                        <td>{{ $proyecto->created_at->format('d/m/Y')}}</td>
+                                        <td>{{ $concepto->descripcion }}</td>
+                                        <td>{{ $concepto->unidad}}</td>
+                                        <td>{{ $concepto->cantidad}}</td>
+                                        <td>{{"$ ".$concepto->pu}}</td>
+                                         <td>{{"$ ".($concepto->pu * $concepto->cantidad)}}</td>
+                                        <td>{{ $concepto->area}}</td>
+                                        <td>{{ $concepto->nombre_proyecto}}</td>
+                                        <td>{{ $concepto->estado_conceptos}}</td>
+                                        <td>{{ $concepto->created_at->format('d/m/Y')}}</td>
                                         <td class="text-right">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -64,11 +64,11 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                     
-                                                   <form action="{{ route('proyectos.destroy', $proyecto->id ) }}" method="post">
+                                                   <form action="{{ route('conceptos.destroy', $concepto->id ) }}" method="post">
                                                         @csrf
                                                         @method('delete')
                                                             
-                                                        <!--<a class="dropdown-item" href="{{ route('proyectos.edit', $proyecto->id) }}">{{ __('Editar') }}</a>-->
+                                                        <a class="dropdown-item" href="{{ route('conceptos.edit', $concepto->id) }}">{{ __('Editar') }}</a>
                                                         <button type="button" class="dropdown-item" onclick="confirm('{{ __("¿Estás seguro que deseas borrarlo?") }}') ? this.parentElement.submit() : ''">
                                                         {{ __('Borrar') }}
                                                         </button>

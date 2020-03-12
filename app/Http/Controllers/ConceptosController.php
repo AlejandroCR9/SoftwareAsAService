@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\conceptos;
+use App\proyectos;
+use App\historial;
 use Illuminate\Http\Request;
 use App\Http\Requests\ConceptosRequest;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +19,9 @@ class ConceptosController extends Controller
      */
     public function index(conceptos $model)
     {
-        return view('conceptos.index', ['conceptos' => $model->paginate(15)]);
+        $concepto= conceptos::join("proyectos","conceptos.fk_id_proyecto","=","proyectos.id")->get();
+
+        return view('conceptos.index', ['conceptos' => $concepto]);
     }
 
     /**
@@ -27,7 +31,9 @@ class ConceptosController extends Controller
      */
     public function create()
     {
-        return view('conceptos.create');
+        $proyectos = proyectos::all();
+    
+        return view('conceptos.create', ['proyectos' => $proyectos] );
     }
 
     /**
@@ -39,9 +45,12 @@ class ConceptosController extends Controller
      */
     public function store(ConceptosRequest $request, conceptos $model)
     {
+        //print_r($request->all());
+        //$arrayName = array('descripcion' => $_POST['descripcion'],'unidad' => $_POST['unidad'],'cantidad' => $_POST['cantidad'], 'pu' => $_POST['pu'],'area' => $_POST['area'], 'fk_id_proyecto' => $_POST['fk_id_proyecto'], 'estado_conceptos' => $_POST['estado_conceptos']);
+        //print_r($request->all());
         $model->create($request->all());
-        $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Crear', 'lugar' => 'Concepto nuevo.');
-        historial::create($a);
+        //$a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Crear', 'lugar' => 'Concepto nuevo.');
+        //historial::create($a);
         return redirect()->route('conceptos.index')->withStatus(__('Concepto creado exitosamente.'));
     }
 
@@ -54,7 +63,8 @@ class ConceptosController extends Controller
     public function edit($id)
     {
         $concepto=conceptos::find($id);
-        return view('conceptos.edit', compact('concepto'));
+        $proyectos = proyectos::all();
+        return view('conceptos.edit', compact('concepto'),compact('proyectos'));
     }
 
     /**
@@ -64,7 +74,7 @@ class ConceptosController extends Controller
      * @param  \App\trabajadores  $trabajador
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(ConceptosRequest $request, conceptos  $concepto, $id)
+    public function update(ConceptosRequest $request,  $id)
     {   
         $concep =conceptos::findOrFail($id);
         $concep->update($request->all());
