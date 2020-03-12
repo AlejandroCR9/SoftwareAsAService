@@ -15,17 +15,18 @@ class CrearTablaProyectos extends Migration
     {
         Schema::create('proyectos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre', 15);
+            $table->string('nombre_proyecto', 15);
             $table->string('tipo_proyecto', 20);
             $table->string('ubicacion', 100);
             $table->string('estado', 15);
-            $table->date('fecha_inicio');
-            $table->date('fecha_fin');
+            $table->date('fecha_inicio')->nullable();
+            $table->date('fecha_fin')->nullable();
             $table->integer('fk_id_lider');
             $table->integer('fk_id_cliente');
             $table->foreign('fk_id_lider')->references('id')->on('trabajadores')->onDelete('cascade');
             $table->foreign('fk_id_cliente')->references('id')->on('clientes')->onDelete('cascade');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
     }
 

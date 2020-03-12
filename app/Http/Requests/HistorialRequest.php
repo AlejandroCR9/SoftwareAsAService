@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\proveedores;
+use App\historial;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProveedoresRequest extends FormRequest
+class HistorialRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,20 +26,14 @@ class ProveedoresRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => [
-                'required', 'min:3'
+            'fk_id_usuario' => [
+                'required'
             ],
-            'telefono' => [
-                'required', 'min:10', 'max:10'
+            'accion' => [
+                'required'
             ],
-            'representante' => [
-                'required', 'min:3'
-            ],
-            'direccion' => [
-                'min:15'
-            ],
-            'correo' => [
-                'min:10'
+            'lugar' => [
+                'required'
             ]
         ];
     }

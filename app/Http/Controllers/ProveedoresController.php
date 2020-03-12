@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\proveedores;
+use App\historial;
 use App\Http\Requests\ProveedoresRequest;
 use Illuminate\Support\Facades\Hash;
 
@@ -39,20 +40,23 @@ class ProveedoresController extends Controller
      */
     public function store(ProveedoresRequest $request, proveedores $model)
     {
+        //print_r($request->all());
         $model->create($request->all());
-
+        $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Crear', 'lugar' => 'Proveedores');
+        historial::create($a );
         return redirect()->route('proveedores.index')->withStatus(__('Proveedor creado exitosamente.'));
     }
 
     /**
      * Show the form for editing the specified user
      *
-     * @param  \App\trabajadores  $trabajador
+     * @param  id del trabajador $id
      * @return \Illuminate\View\View
      */
-    public function edit(proveedores $proveedores)
+    public function edit($id)
     {
-        return view('proveedores.edit', compact('proveedores'));
+        $proveedor=proveedores::find($id);
+        return view('proveedores.edit', compact('proveedor'));
     }
 
     /**
@@ -62,23 +66,35 @@ class ProveedoresController extends Controller
      * @param  \App\trabajadores  $trabajador
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(ProveedoresRequest $request, proveedores  $proveedores)
-    {
-        $model->update($request->all());
-
+    public function update(ProveedoresRequest $request, proveedores  $proveedores, $id)
+    {   
+        $prove =proveedores::findOrFail($id);
+        $prove->update($request->all());
+         $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Editar', 'lugar' => 'Proveedor con id: '.$id);
+        historial::create($a );
         return redirect()->route('proveedores.index')->withStatus(__('Proveedor modificado exitosamente.'));
     }
 
     /**
      * Remove the specified user from storage
      *
-     * @param  \App\trabajadores  $trabajador
+     * @param  id del trabajador $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(proveedores  $proveedores)
+    public function destroy( $id)
     {
-        $proveedores->delete();
-
-        return redirect()->route('proveedores.index')->withStatus(__('Proveedor elimindado exitosamente.'));
+        //$trabajador->delete();
+        try{
+            proveedores::find($id)->delete();
+            $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Eliminar', 'lugar' => 'Proveedor con id: '.$id);
+            historial::create($a);
+            return redirect()->route('proveedores.index')->withStatus(__('Proveedor elimindado exitosamente.'));
+        }catch(Exception $ex){
+            //return response()->json([
+              //  'error' => 'Hubo un error al eliminar el registro con id: '.$id. ' : '.$ex->getMessage()
+            //], 400);
+        }
+        
+        
     }
 }

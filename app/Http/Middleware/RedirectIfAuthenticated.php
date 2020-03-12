@@ -18,6 +18,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
+            setcookie("ses", auth()->user()->id, time() + (86400 * 30), "/");
             return redirect('/home');
         }
 

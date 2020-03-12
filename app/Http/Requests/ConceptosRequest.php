@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\proveedores;
+use App\conceptos;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProveedoresRequest extends FormRequest
+class ConceptosRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,20 +26,26 @@ class ProveedoresRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => [
-                'required', 'min:3'
+            'descripcion' => [
+                'required'
             ],
-            'telefono' => [
-                'required', 'min:10', 'max:10'
+            'unidad' => [
+                'required'
             ],
-            'representante' => [
-                'required', 'min:3'
+            'cantidad' => [
+                'required'
             ],
-            'direccion' => [
-                'min:15'
+            'pu' => [
+                'required'
             ],
-            'correo' => [
-                'min:10'
+            'area' => [
+                'required'
+            ],
+            'fk_id_proyecto' => [
+                'required'
+            ],
+            'estado' => [
+                'required'
             ]
         ];
     }

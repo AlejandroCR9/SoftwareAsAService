@@ -15,12 +15,13 @@ class CrearTablaTrabajadores extends Migration
     {
         Schema::create('trabajadores', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre', 20);
-            $table->string('apellidos', 25);
-            $table->string('telefono',10);
+            $table->string('nombre', 50);
+            $table->string('apellidos', 50);
+            $table->string('telefono',15);
             $table->string('domicilio',70);
-            $table->string('puesto',25);
+            $table->string('puesto',30);
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
     }
 

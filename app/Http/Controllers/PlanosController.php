@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\planos;
 use Illuminate\Http\Request;
-use App\clientes;
-use App\historial;
-use App\Http\Requests\ClientesRequest;
+use App\Http\Requests\PlanosRequest;
 use Illuminate\Support\Facades\Hash;
 
-class ClientesController extends Controller
+class PlanosController extends Controller
 {
     /**
      * Display a listing of the users
@@ -16,9 +15,9 @@ class ClientesController extends Controller
      * @param  \App\trabajadores  $model
      * @return \Illuminate\View\View
      */
-    public function index(clientes $model)
+    public function index(planos $model)
     {
-        return view('clientes.index', ['clientes' => $model->paginate(15)]);
+        return view('planos.index', ['planos' => $model->paginate(15)]);
     }
 
     /**
@@ -28,7 +27,7 @@ class ClientesController extends Controller
      */
     public function create()
     {
-        return view('clientes.create');
+        return view('planos.create');
     }
 
     /**
@@ -38,13 +37,11 @@ class ClientesController extends Controller
      * @param  \App\trabajadores  $model
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(ClientesRequest $request, clientes $model)
+    public function store(PlanosRequest $request, planos $model)
     {
-
         $model->create($request->all());
-        $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Crear', 'lugar' => 'Cliente nuevo.');
-        historial::create($a);
-        return redirect()->route('clientes.index')->withStatus(__('Cliente creado exitosamente.'));
+
+        return redirect()->route('planos.index')->withStatus(__('Plano creado exitosamente.'));
     }
 
     /**
@@ -55,8 +52,8 @@ class ClientesController extends Controller
      */
     public function edit($id)
     {
-        $cliente=clientes::find($id);
-        return view('clientes.edit', compact('cliente'));
+        $planos=planos::find($id);
+        return view('planos.edit', compact('planos'));
     }
 
     /**
@@ -66,13 +63,11 @@ class ClientesController extends Controller
      * @param  \App\trabajadores  $trabajador
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(ClientesRequest $request, $id)
+    public function update(PlanosRequest $request, planos  $planos, $id)
     {   
-        $clien =clientes::findOrFail($id);
-        $clien->update($request->all());
-        $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Editar', 'lugar' => 'Cliente con id.'.$id);
-        historial::create($a);
-        return redirect()->route('clientes.index')->withStatus(__('Cliente modificado exitosamente.'));
+        $plano =planos::findOrFail($id);
+        $plano->update($request->all());
+        return redirect()->route('planos.index')->withStatus(__('Plano modificado exitosamente.'));
     }
 
     /**
@@ -85,10 +80,8 @@ class ClientesController extends Controller
     {
         //$trabajador->delete();
         try{
-            clientes::find($id)->delete();
-            $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Eliminar', 'lugar' => 'Cliente con id.'.$id);
-            historial::create($a);
-            return redirect()->route('clientes.index')->withStatus(__('Cliente elimindado exitosamente.'));
+            planos::find($id)->delete();
+            return redirect()->route('planos.index')->withStatus(__('Plano elimindado exitosamente.'));
         }catch(Exception $ex){
             //return response()->json([
               //  'error' => 'Hubo un error al eliminar el registro con id: '.$id. ' : '.$ex->getMessage()
@@ -98,4 +91,3 @@ class ClientesController extends Controller
         
     }
 }
-

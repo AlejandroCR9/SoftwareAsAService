@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\clientes;
+use App\planos;
 use Illuminate\Validation\Rule;
-use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Foundation\Http\FormRequest
 
-class ClientesRequest extends FormRequest
+class PlanosRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,14 +26,11 @@ class ClientesRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_cliente' => [
-                'required', 'min:8'
+            'plano' => [
+                'required'
             ],
-            'telefono' => [
-                'required', 'min:10','max:10'
-            ],
-            'correo' => [
-                'min:5'
+            'fk_id_proyecto' => [
+                'required'
             ]
         ];
     }

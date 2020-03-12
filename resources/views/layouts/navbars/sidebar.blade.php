@@ -50,7 +50,7 @@
                 <div class="row">
                     <div class="col-6 collapse-brand">
                         <a href="{{ route('home') }}">
-                            <img src="{{ asset('argon') }}/img/brand/blue.png">
+                            <img src="{{ asset('argon') }}/img/brand/logo.JPG">
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
@@ -85,8 +85,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('trabajadores.index') }}">
-                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Proyectos (No jala)') }}
+                    <a class="nav-link" href="{{ route('proyectos.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Proyectos (En proceso)') }}
                     </a>
                 </li>
                  <li class="nav-item">
@@ -95,14 +95,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('trabajadores.index') }}">
-                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Clientes (No jala)') }}
+                    <a class="nav-link" href="{{ route('clientes.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Clientes') }}
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('trabajadores.index') }}">
-                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Proveedores (No jala)') }}
+                    <a class="nav-link" href="{{ route('proveedores.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Proveedores') }}
                     </a>
                 </li>
 
@@ -165,8 +165,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('trabajadores.index') }}">
-                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Historial de Cambios (No jala)') }}
+                    <a class="nav-link" href="{{ route('historial.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Historial de Cambios') }}
                     </a>
                 </li>
             </ul>

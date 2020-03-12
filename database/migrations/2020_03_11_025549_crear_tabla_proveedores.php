@@ -15,12 +15,13 @@ class CrearTablaProveedores extends Migration
     {
         Schema::create('proveedores', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre', 10);
-            $table->string('telefono', 8);
-            $table->string('representante',10);
-            $table->string('direccion',15)->nullable();
-            $table->string('correo',12)->nullable();
+            $table->string('nombre', 20);
+            $table->string('telefono', 10);
+            $table->string('representante',50);
+            $table->string('domicilio',70)->nullable();
+            $table->string('correo',25)->nullable();
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
     }
 
