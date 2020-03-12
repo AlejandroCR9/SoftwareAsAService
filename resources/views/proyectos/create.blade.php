@@ -13,7 +13,7 @@
                                 <h3 class="mb-0">{{ __('Clientes') }}</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('trabajadores.index') }}" class="btn btn-sm btn-primary">{{ __('Regresar') }}</a>
+                                <a href="{{ route('proyectos.index') }}" class="btn btn-sm btn-primary">{{ __('Regresar') }}</a>
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
 
                                 <div class="form-group{{ $errors->has('ubicacion') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-ubicacion">{{ __('Ubicacion') }}</label>
-                                    <input type="text" name="ubicacion" id="input-ubicacion" class="form-control form-control-alternative{{ $errors->has('ubicacion') ? ' is-invalid' : '' }}" placeholder="{{ __('ubicacion') }}" value="{{ old('ubicacion') }}" maxlength="10" required autofocus>
+                                    <input type="text" name="ubicacion" id="input-ubicacion" class="form-control form-control-alternative{{ $errors->has('ubicacion') ? ' is-invalid' : '' }}" placeholder="{{ __('ubicacion') }}" value="{{ old('ubicacion') }}" maxlength="20" required autofocus>
 
                                     @if ($errors->has('ubicacion'))
                                         <span class="invalid-feedback" role="alert">
@@ -84,7 +84,7 @@
                                         
                                     <select type="text" name="fk_id_lider" id="input-fk_id_lider" class="form-control form-control-alternative{{ $errors->has('fk_id_lider') ? ' is-invalid' : '' }}" placeholder="{{ __('fk_id_lider') }}" value="{{ old('fk_id_lider') }}"required>
                                     @foreach ($info as $i)
-                                        <option value="">{{$i->nombre." ".$i->apellidos}}</option>   
+                                        <option value="{{$i->id}}">{{$i->nombre." ".$i->apellidos}}</option>   
                                     @endforeach
 
                                     </select>
@@ -94,7 +94,7 @@
                                         
                                     <select type="text" name="fk_id_cliente" id="input-fk_id_cliente" class="form-control form-control-alternative{{ $errors->has('fk_id_cliente') ? ' is-invalid' : '' }}" placeholder="{{ __('fk_id_cliente') }}" value="{{ old('fk_id_cliente') }}"required>
                                     @foreach ($clientes as $c)
-                                        <option value="">{{$c->nombre_cliente}}</option>   
+                                        <option value="{{$c->id}}">{{$c->nombre_cliente}}</option>   
                                     @endforeach
 
                                     </select>

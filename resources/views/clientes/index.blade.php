@@ -44,9 +44,7 @@
                                 @foreach ($clientes as $cliente)
                                     <tr>
                                         <td>{{ $cliente->nombre_cliente }}</td>
-                                        <td>
-                                           {{ $cliente->telefono}}
-                                        </td>
+                                        <td>{{ $cliente->telefono}}</td>
                                         <td>{{ $cliente->correo}}</td>
                                         <td>{{ $cliente->created_at->format('d/m/Y')}}</td>
                                         <td class="text-right">
