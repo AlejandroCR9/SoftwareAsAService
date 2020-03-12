@@ -26,7 +26,7 @@ class ClientesRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => [
+            'nombre_cliente' => [
                 'required', 'min:8'
             ],
             'telefono' => [
