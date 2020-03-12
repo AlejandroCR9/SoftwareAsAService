@@ -160,7 +160,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('trabajadores.index') }}">
-                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Reportes (No jala)') }}
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Planos (doesnt work)') }}
                     </a>
                 </li>
 
