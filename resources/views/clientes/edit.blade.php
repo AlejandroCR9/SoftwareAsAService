@@ -24,13 +24,13 @@
 
                             <h6 class="heading-small text-muted mb-4">{{ __('Información') }}</h6>
                             <div class="pl-lg-4">
-                                <div class="form-group{{ $errors->has('nombre') ? ' has-danger' : '' }}">
+                                <div class="form-group{{ $errors->has('nombre_cliente') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-nombre">{{ __('Nombre') }}</label>
-                                    <input type="text" name="nombre" id="input-nombre" class="form-control form-control-alternative{{ $errors->has('nombre') ? ' is-invalid' : '' }}" placeholder="{{ __('Nombre') }}" value="{{ old('nombre', $cliente->nombre) }}" required autofocus>
+                                    <input type="text" name="nombre_cliente" id="input-nombre" class="form-control form-control-alternative{{ $errors->has('nombre_cliente') ? ' is-invalid' : '' }}" placeholder="{{ __('Nombre') }}" value="{{ old('nombre_cliente', $cliente->nombre_cliente) }}" required autofocus>
 
-                                    @if ($errors->has('nombre'))
+                                    @if ($errors->has('nombre_cliente'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('nombre') }}</strong>
+                                            <strong>{{ $errors->first('nombre_cliente') }}</strong>
                                         </span>
                                     @endif
                                 </div>

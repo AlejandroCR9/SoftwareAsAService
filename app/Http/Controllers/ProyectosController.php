@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\proyectos;
+use App\clientes;
+use App\trabajadores;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProyectosRequest;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +19,9 @@ class ProyectosController extends Controller
      */
     public function index(proyectos $model)
     {
-        return view('proyectos.index', ['proyectos' => $model->paginate(15)]);
+        $proyectos= proyectos::join("clientes","proyectos.fk_id_cliente","=","clientes.id")->join("trabajadores","proyectos.fk_id_lider","=","trabajadores.id")->get();
+        //print_r(compact($proyectos));
+        return view('proyectos.index', ['proyectos' => $proyectos]);
     }
 
     /**
@@ -27,7 +31,10 @@ class ProyectosController extends Controller
      */
     public function create()
     {
-        return view('proyectos.create');
+        $clientes = clientes::all();
+        $trabajadores = trabajadores::where("puesto","=","Director de proyectos")->get();
+        //print_r($trabajadores);     
+        return view('proyectos.create', ['info' => $trabajadores],['clientes' => $clientes] );
     }
 
     /**

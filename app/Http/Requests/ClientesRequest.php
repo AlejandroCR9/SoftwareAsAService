@@ -30,10 +30,10 @@ class ClientesRequest extends FormRequest
                 'required', 'min:8'
             ],
             'telefono' => [
-                'required', 'min:8'
+                'required', 'min:10','max:10'
             ],
             'correo' => [
-                'min:14'
+                'min:5'
             ]
         ];
     }

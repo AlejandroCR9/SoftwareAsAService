@@ -34,25 +34,26 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">{{ __('Nombre') }}</th>
-                                    <th scope="col">{{ __('tipo_proyecto') }}</th>
-                                    <th scope="col">{{ __('ubicacion') }}</th>
-                                    <th scope="col">{{ __('estado') }}</th>
-                                    <th scope="col">{{ __('fecha_inicio') }}</th>
-                                    <th scope="col">{{ __('fecha_fin') }}</th>
-                                    <th scope="col">{{ __('lider Proyecto') }}</th>
-                                    <th scope="col">{{ __('cliente') }}</th>
-                                    <th scope="col"></th>
+                                    <th scope="col">{{ __('Tipo Proyecto') }}</th>
+                                    <th scope="col">{{ __('Ubicacion') }}</th>
+                                    <th scope="col">{{ __('Estado') }}</th>
+                                     <th scope="col">{{ __('Cliente') }}</th>
+                                    <th scope="col">{{ __('Lider Proyecto') }}</th>
+                                    <th scope="col">{{ __('Fecha Inicio') }}</th>
+                                    <th scope="col">{{ __('Fecha Fin') }}</th> 
+                                    <th scope="col">{{ __('Creado') }}</th>                                  
+                                    <th scope="col"> </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($proyectos as $proyecto)
                                     <tr>
-                                        <td>{{ $proyecto->nombre }}</td>
-                                        <td>
-                                           {{ $proyecto->tipo_proyecto}}
-                                        </td>
+                                        <td>{{ $proyecto->nombre_proyecto }}</td>
+                                        <td>{{ $proyecto->tipo_proyecto}}</td>
                                         <td>{{ $proyecto->ubicacion}}</td>
                                         <td>{{ $proyecto->estado}}</td>
+                                        <td>{{ $proyecto->nombre_cliente}}</td>
+                                        <td>{{ $proyecto->nombre}}</td>
                                         <td>{{ $proyecto->fecha_inicio}}</td>
                                         <td>{{ $proyecto->fecha_fin}}</td>
                                         <td>{{ $proyecto->created_at->format('d/m/Y')}}</td>
@@ -63,7 +64,7 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                     
-                                                   s <form action="{{ route('proyectos.destroy', $proyecto->id ) }}" method="post">
+                                                   <form action="{{ route('proyectos.destroy', $proyecto->id ) }}" method="post">
                                                         @csrf
                                                         @method('delete')
                                                             
