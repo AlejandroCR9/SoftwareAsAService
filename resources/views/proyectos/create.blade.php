@@ -1,7 +1,7 @@
-@extends('layouts.app', ['title' => __('Clientes')])
+@extends('layouts.app', ['title' => __('Proyectos')])
 
 @section('content')
-    @include('users.partials.header', ['title' => __('Agregar cliente')])   
+    @include('users.partials.header', ['title' => __('Agregar Proyecto')])   
 
     <div class="container-fluid mt--7">
         <div class="row">
@@ -10,7 +10,7 @@
                     <div class="card-header bg-white border-0">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">{{ __('Clientes') }}</h3>
+                                <h3 class="mb-0">{{ __('Proyectos') }}</h3>
                             </div>
                             <div class="col-4 text-right">
                                 <a href="{{ route('proyectos.index') }}" class="btn btn-sm btn-primary">{{ __('Regresar') }}</a>
@@ -20,7 +20,6 @@
                     <div class="card-body">
                         <form method="post" action="{{ route('proyectos.store') }}" autocomplete="off">
                             @csrf
-                            
                             <h6 class="heading-small text-muted mb-4">{{ __('Información') }}</h6>
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('nombre_proyecto') ? ' has-danger' : '' }}">
@@ -55,6 +54,16 @@
                                             <strong>{{ $errors->first('ubicacion') }}</strong>
                                         </span>
                                     @endif
+                                </div>
+
+                                <div class="form-group{{ $errors->has('estado') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-estado">{{ __('Estado') }}</label>
+                                        
+                                    <select type="text" name="estado" id="input-estado" class="form-control form-control-alternative{{ $errors->has('estado') ? ' is-invalid' : '' }}" placeholder="{{ __('estado') }}" value="{{ old('estado') }}"required>
+                                        <option value="En espera">En espera</option> 
+                                        <option value="En proceso">En proceso</option>
+                                        <option value="Completado">Completado</option>    
+                                    </select>
                                 </div>
 
                                 <div class="form-group{{ $errors->has('fecha_inicio') ? ' has-danger' : '' }}">

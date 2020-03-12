@@ -15,7 +15,7 @@ class ProyectosRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -26,27 +26,29 @@ class ProyectosRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => [
-                'required'
+            'nombre_proyecto' => [
+                'required', 'min:1'
             ],
             'tipo_proyecto' => [
-                'required'
+                'required', 'min:1'
             ],
             'ubicacion' => [
-                'required'
+                'required', 'min:1'
             ],
             'estado' => [
-                'required'
+                'required', 'min:1'
             ],
             'fecha_inicio' => [
+                'required', 'min:1'
             ],
             'fecha_fin' => [
+                'required', 'min:1'
             ],
             'fk_id_lider' => [
-                'required'
+                'required', 'min:1'
             ],
             'fk_id_cliente' => [
-                'required'
+                'required', 'min:1'
             ]
         ];
     }

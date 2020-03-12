@@ -34,7 +34,7 @@ class ProyectosController extends Controller
         $clientes = clientes::all();
         $trabajadores = trabajadores::where("puesto","=","Director de proyectos")->get();
         //print_r($trabajadores);     
-        return view('proyectos.create', ['info' => $trabajadores],['clientes' => $clientes] );
+        return view('proyectos.create', ['info' => $trabajadores], ['clientes' => $clientes] );
     }
 
     /**
@@ -47,7 +47,7 @@ class ProyectosController extends Controller
     public function store(ProyectosRequest $request, proyectos $model)
     {
         $model->create($request->all());
-
+        //echo("asdsdasd");
         return redirect()->route('proyectos.index')->withStatus(__('Proyecto creado exitosamente.'));
     }
 
@@ -59,8 +59,12 @@ class ProyectosController extends Controller
      */
     public function edit($id)
     {
-        $proyectos=proyectos::find($id);
-        return view('proyectos.edit', compact('proyectos'));
+        $proyectos=proyectos::where("id","=",$id)->get();;
+        $cliente = clientes::all();
+        $trabajador = trabajadores::where("puesto","=","Director de proyectos")->get();
+        print_r(compact('proyectos'));
+        print_r($proyectos);
+        return view('proyectos.edit', compact('proyectos'), compact('trabajador','clientes'));
     }
 
     /**

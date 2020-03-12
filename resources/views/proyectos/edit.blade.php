@@ -13,20 +13,19 @@
                                 <h3 class="mb-0">{{ __('Cliente') }}</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('clientes.index') }}" class="btn btn-sm btn-primary">{{ __('Regresar') }}</a>
+                                <a href="{{ route('proyectos.index') }}" class="btn btn-sm btn-primary">{{ __('Regresar') }}</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('clientes.update',  $cliente->id) }}" autocomplete="off">
+                        <form method="post" action="{{ route('proyectos.update',  $proyectos->id) }}" autocomplete="off">
                             @csrf
                             @method('put')
-
                             <h6 class="heading-small text-muted mb-4">{{ __('Información') }}</h6>
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('nombre_proyecto') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-nombre">{{ __('Nombre') }}</label>
-                                    <input type="text" name="nombre_proyecto" id="input-nombre" class="form-control form-control-alternative{{ $errors->has('nombre_proyecto') ? ' is-invalid' : '' }}" placeholder="{{ __('Nombre') }}" value="{{ old('nombre_proyecto', $proyecto->nombre_proyecto) }}" required autofocus>
+                                    <label class="form-control-label" for="input-nombre_proyecto">{{ __('Nombre') }}</label>
+                                    <input type="text" name="nombre_proyecto" id="input-nombre_proyecto" class="form-control form-control-alternative{{ $errors->has('nombre_proyecto') ? ' is-invalid' : '' }}" placeholder="{{ __('Nombre') }}" value="{{ old('nombre_proyecto', $proyectos->nombre_proyecto) }}" required autofocus>
 
                                     @if ($errors->has('nombre_proyecto'))
                                         <span class="invalid-feedback" role="alert">
@@ -35,34 +34,83 @@
                                     @endif
                                 </div>
                                 
-                                <div class="form-group{{ $errors->has('telefono') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-telefono">{{ __('Telefono') }}</label>
-                                    <input type="number" name="telefono" id="input-telefono" class="form-control form-control-alternative{{ $errors->has('telefono') ? ' is-invalid' : '' }}" placeholder="{{ __('telefono') }}" value="{{ old('telefono', $cliente->telefono) }}" maxlength="10" required autofocus>
+                                <div class="form-group{{ $errors->has('tipo_proyecto') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-tipo_proyecto">{{ __('Tipo Proyecto') }}</label>
+                                        
+                                    <select type="text" name="tipo_proyecto" id="input-tipo_proyecto" class="form-control form-control-alternative{{ $errors->has('tipo_proyecto') ? ' is-invalid' : '' }}" placeholder="{{ __('tipo proyecto') }}" value="{{ old('tipo_proyecto') }}"required>
+                                        <option value="Residenciales">Residenciales</option>
+                                        <option value="Edificacion vertical">Edificacion vertical</option> 
+                                        <option value=" Industriales"> Industriales</option> 
+                                        <option value="Especiales">Especiales</option> 
+                                        <option value="Urbanos">Urbanos</option>        
+                                    </select>
+                                </div>
 
-                                    @if ($errors->has('telefono'))
+                                <div class="form-group{{ $errors->has('ubicacion') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-ubicacion">{{ __('Ubicacion') }}</label>
+                                    <input type="text" name="ubicacion" id="input-ubicacion" class="form-control form-control-alternative{{ $errors->has('ubicacion') ? ' is-invalid' : '' }}" placeholder="{{ __('ubicacion') }}" value="{{ old('ubicacion',$proyectos->ubicacion) }}" maxlength="20" required autofocus>
+
+                                    @if ($errors->has('ubicacion'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('telefono') }}</strong>
+                                            <strong>{{ $errors->first('ubicacion') }}</strong>
                                         </span>
                                     @endif
                                 </div>
 
-                                <div class="form-group{{ $errors->has('correo') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-correo">{{ __('Correo') }}</label>
-                                    <input type="email" name="correo" id="input-correo" class="form-control form-control-alternative{{ $errors->has('correo') ? ' is-invalid' : '' }}" placeholder="{{ __('Correo') }}" value="{{ old('correo', $cliente->correo)  }}" required>
+                                <div class="form-group{{ $errors->has('estado') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-estado">{{ __('Estado') }}</label>
+                                        
+                                    <select type="text" name="estado" id="input-estado" class="form-control form-control-alternative{{ $errors->has('estado') ? ' is-invalid' : '' }}" placeholder="{{ __('estado') }}" value="{{ old('estado', $proyectos->estado) }}"required>
+                                        <option value="En espera">En espera</option> 
+                                        <option value="En proceso">En proceso</option>
+                                        <option value="Completado">Completado</option>    
+                                    </select>
+                                </div>
 
-                                    @if ($errors->has('correo'))
+                                <div class="form-group{{ $errors->has('fecha_inicio') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-fecha_inicio">{{ __('Fecha Inicio') }}</label>
+                                    <input type="date" name="fecha_inicio" id="input-fecha_inicio" class="form-control form-control-alternative{{ $errors->has('fecha_inicio') ? ' is-invalid' : '' }}" placeholder="{{ __('fecha_inicio') }}" value="{{ old('fecha_inicio', $proyectos->id) }}" autofocus>
+
+                                    @if ($errors->has('fecha_inicio'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('correo') }}</strong>
+                                            <strong>{{ $errors->first('fecha_inicio') }}</strong>
                                         </span>
                                     @endif
                                 </div>
 
+                                <div class="form-group{{ $errors->has('fecha_fin') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-fecha_fin">{{ __('Fecha Fin') }}</label>
+                                    <input type="date" name="fecha_fin" id="input-fecha_fin" class="form-control form-control-alternative{{ $errors->has('fecha_fin') ? ' is-invalid' : '' }}" placeholder="{{ __('fecha_fin') }}" value="{{ old('fecha_fin', $proyectos->id) }}" autofocus>
 
-                               
+                                    @if ($errors->has('fecha_fin'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('fecha_fin') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
+                                <div class="form-group{{ $errors->has('fk_id_lider') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-fk_id_lider">{{ __('Lider Proyecto') }}</label>
+                                        
+                                    <select type="text" name="fk_id_lider" id="input-fk_id_lider" class="form-control form-control-alternative{{ $errors->has('fk_id_lider') ? ' is-invalid' : '' }}" placeholder="{{ __('fk_id_lider') }}" value="{{ old('fk_id_lider', $proyectos->fk_id_lider) }}"required>
+                                    @foreach ($info as $i)
+                                        <option value="{{$i->id}}">{{$i->nombre." ".$i->apellidos}}</option>   
+                                    @endforeach
+
+                                    </select>
+                                </div>
+                                <div class="form-group{{ $errors->has('fk_id_cliente') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-fk_id_cliente">{{ __('Clientes') }}</label> 
+                                    <select type="text" name="fk_id_cliente" id="input-fk_id_cliente" class="form-control form-control-alternative{{ $errors->has('fk_id_cliente') ? ' is-invalid' : '' }}" placeholder="{{ __('fk_id_cliente') }}" value="{{ old('fk_id_cliente', $proyectos->fk_id_cliente) }}"required>
+                                    @foreach ($clientes as $c)
+                                        <option value="{{$c->id}}">{{$c->nombre_cliente}}</option>   
+                                    @endforeach
+
+                                    </select>
+                                </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Guardar') }}</button>
                                 </div>
-                            </div>
                         </form>
                     </div>
                 </div>
