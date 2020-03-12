@@ -39,6 +39,7 @@ class ClientesController extends Controller
      */
     public function store(ClientesRequest $request, clientes $model)
     {
+
         $model->create($request->all());
 
         return redirect()->route('clientes.index')->withStatus(__('Cliente creado exitosamente.'));
