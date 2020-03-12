@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CrearTablaTrabajadores extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('trabajadores', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email', 50)->unique();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('nombre', 50);
+            $table->string('apellidos', 50);
+            $table->string('telefono',15);
+            $table->string('domicilio',70);
+            $table->string('puesto',30);
             $table->timestamps();
             $table->engine = 'MyISAM';
         });
@@ -31,6 +32,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('trabajadores');
     }
 }

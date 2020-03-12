@@ -50,7 +50,7 @@
                 <div class="row">
                     <div class="col-6 collapse-brand">
                         <a href="{{ route('home') }}">
-                            <img src="{{ asset('argon') }}/img/brand/blue.png">
+                            <img src="{{ asset('argon') }}/img/brand/logo.JPG">
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
@@ -80,11 +80,31 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.index') }}">
-                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Usuarios') }}
+                    <a class="nav-link" href="{{ route('trabajadores.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Trabajadores') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('proyectos.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Proyectos (En proceso)') }}
+                    </a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('trabajadores.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Conceptos (No jala)') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('clientes.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Clientes') }}
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('proveedores.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Proveedores') }}
+                    </a>
+                </li>
 
                 <!--<li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
@@ -106,7 +126,7 @@
                             </li>
                         </ul>
                     </div>
-                </li>-->
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="#">
@@ -127,10 +147,29 @@
                     <a class="nav-link" href="#">
                         <i class="ni ni-circle-08 text-pink"></i><i class="ni ni-ui-04"></i> {{ __('Register') }}
                     </a>
+                </li>-->
+                <!-- Divider -->
+                
+            </ul>
+            <hr class="my-3">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('user.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Usuarios') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('trabajadores.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Planos (doesnt work)') }}
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('historial.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i>{{ __('Historial de Cambios') }}
+                    </a>
                 </li>
             </ul>
-            <!-- Divider -->
-            <hr class="my-3">
         </div>
     </div>
 </nav>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\historial;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
 
@@ -39,8 +40,9 @@ class UserController extends Controller
     public function store(UserRequest $request, User $model)
     {
         $model->create($request->merge(['password' => Hash::make($request->get('password'))])->all());
-
-        return redirect()->route('user.index')->withStatus(__('User successfully created.'));
+        $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Crear', 'lugar' => 'Usuario con nuevo. ');
+        historial::create($a );
+        return redirect()->route('user.index')->withStatus(__('Usuario creado.'));
     }
 
     /**
@@ -51,6 +53,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $r=compact('user');
         return view('users.edit', compact('user'));
     }
 
@@ -67,8 +70,9 @@ class UserController extends Controller
             $request->merge(['password' => Hash::make($request->get('password'))])
                 ->except([$request->get('password') ? '' : 'password']
         ));
-
-        return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
+        $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Editar', 'lugar' => 'Usuario ');
+        historial::create($a );
+        return redirect()->route('user.index')->withStatus(__('Usuario modificado.'));
     }
 
     /**
@@ -80,7 +84,8 @@ class UserController extends Controller
     public function destroy(User  $user)
     {
         $user->delete();
-
+        $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Eliminar', 'lugar' => 'Usuario');
+        historial::create($a );
         return redirect()->route('user.index')->withStatus(__('User successfully deleted.'));
     }
 }
