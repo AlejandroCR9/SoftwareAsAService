@@ -24,6 +24,7 @@ class CrearTablaConceptos extends Migration
             $table->boolean('estado');
             $table->foreign('fk_id_proyecto')->references('id')->on('proyectos')->onDelete('cascade');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
     }
 

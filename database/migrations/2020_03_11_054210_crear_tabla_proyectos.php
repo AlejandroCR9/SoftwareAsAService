@@ -26,6 +26,7 @@ class CrearTablaProyectos extends Migration
             $table->foreign('fk_id_lider')->references('id')->on('trabajadores')->onDelete('cascade');
             $table->foreign('fk_id_cliente')->references('id')->on('clientes')->onDelete('cascade');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
     }
 

@@ -19,6 +19,7 @@ class CrearTablaHistorial extends Migration
             $table->string('accion',200);
             $table->string('lugar',50);
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
     }
 

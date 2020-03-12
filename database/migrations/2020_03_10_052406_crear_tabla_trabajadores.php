@@ -21,6 +21,7 @@ class CrearTablaTrabajadores extends Migration
             $table->string('domicilio',70);
             $table->string('puesto',25);
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
     }
 

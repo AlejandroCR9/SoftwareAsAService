@@ -19,6 +19,7 @@ class CrearTablaClientes extends Migration
             $table->string('telefono', 15);
             $table->string('correo',50)->nullable();
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
     }
 

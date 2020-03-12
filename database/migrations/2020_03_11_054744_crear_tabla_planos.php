@@ -18,6 +18,7 @@ class CrearTablaPlanos extends Migration
             $table->bigInteger('fk_id_proyecto');
             $table->foreign('fk_id_proyecto')->references('id')->on('proyectos')->onDelete('cascade');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
     }
 

@@ -21,6 +21,7 @@ class CrearTablaProveedores extends Migration
             $table->string('domicilio',70)->nullable();
             $table->string('correo',25)->nullable();
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
     }
 
