@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\proyectos;
 use App\clientes;
 use App\trabajadores;
+use App\historial;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProyectosRequest;
 use Illuminate\Support\Facades\Hash;
@@ -34,7 +35,7 @@ class ProyectosController extends Controller
         $clientes = clientes::all();
         $trabajadores = trabajadores::where("puesto","=","Director de proyectos")->get();
         //print_r($trabajadores);
-        $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Creo', 'lugar' => 'Proyecto con id: '.$id);
+        $a = array('fk_id_usuario' => $_COOKIE['ses'], 'accion' => 'Creo', 'lugar' => 'Proyecto nuevo');
         historial::create($a );     
         return view('proyectos.create', ['info' => $trabajadores], ['clientes' => $clientes] );
     }

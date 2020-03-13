@@ -79,8 +79,7 @@
                                 </div>
 
                                 <div class="form-group{{ $errors->has('fk_id_proyecto') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-fk_id_proyecto">{{ __('Nombre Proyecto') }}</label>
-                                        
+                                    <label class="form-control-label" for="input-fk_id_proyecto">{{ __('Nombre Proyecto (Verifica que el proyecto sea el correcto)') }}</label>
                                     <select type="text" name="fk_id_proyecto" id="input-fk_id_proyecto" class="form-control form-control-alternative{{ $errors->has('fk_id_proyecto') ? ' is-invalid' : '' }}" placeholder="{{ __('fk_id_proyecto') }}" value="{{ old('fk_id_proyecto') }}"required>
                                     @foreach ($proyectos as $i)
                                       
